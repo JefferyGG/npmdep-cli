@@ -1,0 +1,17 @@
+{
+  "name": "npmdeps-cli",
+  "version": "0.0.5",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "analyze": "cd server && npm i && npm run start && cd ../"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^11.0.0"
+  },
+  "bin": {
+    "npmdeps-cli": "bin/cli.js"
+  }
+}
