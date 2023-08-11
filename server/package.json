@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "start": "tsc && node dist/server.js",
     "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/server.ts"
   },
@@ -21,6 +21,7 @@
     "@types/koa-router": "^7.4.4",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^0.34.1"
   }
 }
