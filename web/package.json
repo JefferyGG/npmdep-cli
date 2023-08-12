@@ -16,5 +16,41 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vue-tsc": "^1.8.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "plugins": [
+      "vue"
+    ],
+    "rules": {
+      "quotes": 2,
+      "semi": 1,
+      "no-console": 0,
+      "space-before-function-paren": 0,
+      "vue/max-attributes-per-line": "off",
+      "vue/attributes-order": "off",
+      "vue/require-default-prop": "off",
+      "vue/html-indent": ["error", 2],
+      "vue/no-multiple-template-root": 0,
+      "vue/html-closing-bracket-spacing": ["error", {
+      "selfClosingTag": "never"
+      }]
+      
+    }
   }
 }
