@@ -9,7 +9,7 @@ const router = new Router();
 //获取环境变量中的参数
 const anaDir = process.env.ANA_DIR;
 
-const arr = JSON.parse(process.env.CLI_ARGV)
+const arr = JSON.parse(process.env.CLI_ARGV);
 
 // 存储提取出的参数
 const params: {[key: string]: string} = {};
@@ -17,7 +17,7 @@ const params: {[key: string]: string} = {};
 // 遍历数组
 for (let i = 0; i < arr.length; i++) {
     // 判断元素是否以双横线开头（参数名称）
-    if (arr[i].startsWith('--')) {
+    if (arr[i].startsWith("--")) {
       const paramName: string = arr[i].slice(2); // 去除双横线前缀
       const paramValue: string = arr[i + 1]; 
       params[paramName] = paramValue; 
