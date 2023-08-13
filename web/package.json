@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -45,12 +46,17 @@
       "vue/max-attributes-per-line": "off",
       "vue/attributes-order": "off",
       "vue/require-default-prop": "off",
-      "vue/html-indent": ["error", 2],
+      "vue/html-indent": [
+        "error",
+        2
+      ],
       "vue/no-multiple-template-root": 0,
-      "vue/html-closing-bracket-spacing": ["error", {
-      "selfClosingTag": "never"
-      }]
-      
+      "vue/html-closing-bracket-spacing": [
+        "error",
+        {
+          "selfClosingTag": "never"
+        }
+      ]
     }
   }
 }
