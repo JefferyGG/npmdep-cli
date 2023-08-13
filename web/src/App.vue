@@ -1,5 +1,16 @@
 <script setup lang="ts">
 import HelloWorld from "./components/HelloWorld.vue";
+import { testJson } from "./api/api";
+import { ref } from "vue";
+
+const axiosTest = ref("");
+async function getData() {
+  const res = await testJson();
+  axiosTest.value = res;
+}
+
+getData();
+
 </script>
 
 <template>
@@ -10,6 +21,9 @@ import HelloWorld from "./components/HelloWorld.vue";
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo">
     </a>
+  </div>
+  <div v-for="item in axiosTest" :key="item">
+    <p>{{ item }}</p>
   </div>
   <HelloWorld msg="Vite + Vue"/>
 </template>
