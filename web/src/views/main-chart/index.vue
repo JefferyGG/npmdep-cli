@@ -74,7 +74,7 @@ const options:ECOption = {
   <div class="chart-container">
     <Echart
       width="100%"
-      height="305px"
+      height="100%"
       :option="options"
     />
   </div>
@@ -82,7 +82,7 @@ const options:ECOption = {
 
 <style scoped>
 .chart-container {
-    width: 50%;
+    width: 100%;
     min-width: 600px;
     margin: 0 auto;
     background-color: #f9f9f9;
