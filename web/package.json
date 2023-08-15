@@ -11,7 +11,8 @@
   "dependencies": {
     "axios": "^1.4.0",
     "echarts": "^5.4.3",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
@@ -47,6 +48,7 @@
       "semi": 1,
       "no-console": 0,
       "space-before-function-paren": 0,
+      "@typescript-eslint/ban-types": "off",
       "vue/max-attributes-per-line": "off",
       "vue/attributes-order": "off",
       "vue/require-default-prop": "off",
