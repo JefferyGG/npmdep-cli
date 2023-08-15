@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
 import { testJson } from "./api/api";
 import { ref } from "vue";
 
@@ -25,7 +24,7 @@ getData();
   <div v-for="item in axiosTest" :key="item">
     <p>{{ item }}</p>
   </div>
-  <HelloWorld msg="Vite + Vue"/>
+  <router-view/>
 </template>
 
 <style scoped>
