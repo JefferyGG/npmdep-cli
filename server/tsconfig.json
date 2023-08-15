@@ -4,6 +4,7 @@
         "target": "es2017",
         "noImplicitAny": true,
         "moduleResolution": "node",
+        "esModuleInterop": true,//兼容import导入
         "sourceMap": true,
         "outDir": "dist",  // TS文件编译后会放入到此文件夹内
         "baseUrl": ".",
@@ -15,6 +16,6 @@
         }
     },
     "include": [
-        "src/server.ts"
+        "src/*.ts"
     ]
 }
