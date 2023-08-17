@@ -23,14 +23,14 @@ export const analyze = (dir: string, maxCount?:number) => {
         for (const dependency in dependencies) {
         if (!visited.has(dependency)) {
             visited.add(dependency);
-            const dependencyPackageJsonPath = path.join(dir,"node_modules", dependency, "package.json");
-            const dependencyPackageJson = JSON.parse(fs.readFileSync(dependencyPackageJsonPath, "utf-8"));
-            const dependencyDependencies = dependencyPackageJson.dependencies || {};
+            const depJsonPath = path.join(dir, "node_modules", dependency, "package.json");
+            const depJson = JSON.parse(fs.readFileSync(depJsonPath, "utf-8"));
+            const depDeps = depJson.dependencies || {};
             
             // 添加依赖关系到结果中
             const dependencyDetil = {
-                version: dependencyPackageJson.version,
-                dependencies: dependencyDependencies
+                version: depJson.version,
+                dependencies: depDeps
             };
             if (Object.keys(topDeps).includes(dependency)) {
             result[dependency] = dependencyDetil;
@@ -39,11 +39,11 @@ export const analyze = (dir: string, maxCount?:number) => {
             setValue(result, dependency, dependencyDetil);
     
             // 递归遍历上游依赖
-          if (maxCount === undefined || maxCount > 0) {
-            if (maxCount !== undefined) {
-              maxCount--;//控制递归次数
-            }
-            analyzeDeps(dependencyDependencies, visited, result, set);
+            if (maxCount === undefined || maxCount > 0) {
+              if (maxCount !== undefined) {
+                maxCount--;//控制递归次数
+              }
+            analyzeDeps(depDeps, visited, result, set);
           }
             
         } else {
