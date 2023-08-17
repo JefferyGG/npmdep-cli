@@ -18,7 +18,7 @@ export const analyze = (dir: string, maxCount?:number) => {
     const { dependencies: deps = {}, devDependencies: devDeps = {} } = topPkg;
     const topDeps = { ...deps, ...devDeps };
     //递归分析依赖关系
-    function analyzeDeps(dependencies:any, visited:Set<unknown>, result:any, set:Set<unknown>) {
+    function analyzeDeps(dependencies:any, visited:Set<string>, result: any, links:any) {
         // 遍历每个依赖
         for (const dependency in dependencies) {
         if (!visited.has(dependency)) {
@@ -40,41 +40,42 @@ export const analyze = (dir: string, maxCount?:number) => {
             result[dependency] = dependencyDetil;
             }
             
-            setValue(result, dependency, dependencyDetil);
-    
+          setValue(result, dependency, dependencyDetil);
+          //保存关系
+          links[dependency] = [];
+          const dp = Object.keys(depDeps);
+          links[dependency] = links[dependency].concat(dp);
+          
             // 递归遍历上游依赖
             if (maxCount === undefined || maxCount > 0) {
               if (maxCount !== undefined) {
                 maxCount--;//控制递归次数
               }
-            analyzeDeps(depDeps, visited, result, set);
+            analyzeDeps(depDeps, visited, result, links);
           }
             
         } else {
-            //把dependency收集进set类型中，避免重复
-            set.add(dependency);
-            const rn = Array.from(set);
-            result.repeatNodes = rn;
+          result.repeatNodes.push(dependency);
         }
         }
     }
     
     // 从根目录的 package.json 开始分析依赖关系
     function mian(topDeps:object) {
-        const visited = new Set();
+        const visited :Set<string>= new Set();
         const result: { repeatNodes: string[] } = { repeatNodes: [] };
-        const set = new Set();
+        const links: { [key: string]: string[] } = {};
         
         
         
-        analyzeDeps(topDeps, visited, result, set);
+        analyzeDeps(topDeps, visited, result, links);
         
-        return result;
+      return { result: result, links: links };
     }
         
     // 根据 topDeps 调用分析函数
-        const dependencyTree = mian(topDeps);
+  const  { result: result, links: links } = mian(topDeps);
         
-        return dependencyTree;
+  return { result: result, links: links };
 
 };
