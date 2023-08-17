@@ -24,6 +24,10 @@ export const analyze = (dir: string, maxCount?:number) => {
         if (!visited.has(dependency)) {
             visited.add(dependency);
             const depJsonPath = path.join(dir, "node_modules", dependency, "package.json");
+            //路径是否有效
+            if (!fs.existsSync(depJsonPath)) {
+              continue;
+            }
             const depJson = JSON.parse(fs.readFileSync(depJsonPath, "utf-8"));
             const depDeps = depJson.dependencies || {};
             
