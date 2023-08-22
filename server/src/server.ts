@@ -1,6 +1,7 @@
 import Koa from "koa";
+import fs from "fs";
 import { getOptions } from "./getOptions";
-import { exportJson } from "./exportJson";
+import { analyze } from "./analyze";
 const path = require("path");
 const serve = require("koa-static");
 
@@ -9,14 +10,24 @@ const app = new Koa();
 const anaDir = process.env.ANA_DIR;
 
 
-const { json } = getOptions(JSON.parse(process.env.CLI_ARGV));
+const { json:outpath, depth } = getOptions(JSON.parse(process.env.CLI_ARGV));
 
 //初步分析
+const { result: jsonData, links} = analyze(anaDir, parseInt(depth));
 
 
 //仅输出json
-if (json) {
-  console.log("Success!");
+if (outpath) {
+  const exportJson = jsonData;
+  const uniqueArr = [...new Set(exportJson.repeatNodes)];
+  exportJson["repeatNodes"] = uniqueArr;
+  const jsonStr = JSON.stringify(exportJson, null, 2);
+  const op = path.join(anaDir, outpath, "deps-trees.json");
+  fs.writeFile(op, jsonStr, (err) => {
+    if (err) throw err;
+    console.log("The file has been saved!");
+  });
+  
   
 } else { 
 
