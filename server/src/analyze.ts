@@ -70,12 +70,12 @@ export const analyze = (dir: string, maxCount?:number) => {
         
         analyzeDeps(topDeps, visited, result, links);
         
-      return { result: result, links: links };
+      return { result, links };
     }
         
     // 根据 topDeps 调用分析函数
-  const  { result: result, links: links } = mian(topDeps);
+  const  { result, links } = mian(topDeps);
         
-  return { result: result, links: links };
+  return { result, links, topDeps };
 
 };
