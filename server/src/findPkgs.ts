@@ -9,7 +9,7 @@ export const findPkgs = (anadir: string) => {
     });
 
     const names: string[] = [];
-    interface obj { name: string, version: string } 
+    interface obj { name: string, value: string } 
     const nameVersions: obj[] = [];
 
     
@@ -19,7 +19,7 @@ export const findPkgs = (anadir: string) => {
         if (pkg.name) {
             names.push(pkg.name);
             if (pkg.version) {
-                const obj: obj = { name: pkg.name, version: pkg.version };
+                const obj: obj = { name: pkg.name, value:pkg.version };
                 nameVersions.push(obj);
             }
         }
