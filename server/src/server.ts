@@ -2,6 +2,7 @@ import Koa from "koa";
 import fs from "fs";
 import { getOptions } from "./getOptions";
 import { analyze } from "./analyze";
+import { handleNodes, handleLinks } from "./process";
 const path = require("path");
 const serve = require("koa-static");
 
@@ -13,7 +14,7 @@ const anaDir = process.env.ANA_DIR;
 const { json:outpath, depth } = getOptions(JSON.parse(process.env.CLI_ARGV));
 
 //初步分析
-const { result: jsonData, links} = analyze(anaDir, parseInt(depth));
+const { result: jsonData, links, topDeps} = analyze(anaDir, parseInt(depth));
 
 
 //仅输出json
@@ -32,8 +33,8 @@ if (outpath) {
 } else { 
 
   //进一步分析（生成渲染数据）
-
-  //数据输出到服务器并启动
+  handleNodes(anaDir, jsonData.repeatNodes, topDeps);
+  handleLinks(links);
 
   app.use(serve(path.join(__dirname, "../public")));
 
