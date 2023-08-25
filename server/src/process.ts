@@ -53,16 +53,19 @@ export const handleNodes = (dir: string, repeatNodes: string[], topDeps:object) 
         if (freqGroup["twoTen"].includes(item.name)) { 
             item.symbolSize = 30;
             item.category = "2-10";
+            item.label = { show: true };
         
         }
         if (freqGroup["tenMore"].includes(item.name)) { 
             item.symbolSize = 40;
             item.category = ">10";
+            item.label = { show: true };
         }
 
         if (topDepsArr.includes(item.name)) {
             item.symbolSize = 70;
             item.category = "topDeps";
+            item.label = { show: true };
         }
     });
     
@@ -73,6 +76,9 @@ export const handleNodes = (dir: string, repeatNodes: string[], topDeps:object) 
         name: string;
         value: number;
         symbolSize: number;
+        label:{
+            show:boolean
+        }
     }
     exportJson(renderNodes, "public/data", "renderNodes.json");
     
