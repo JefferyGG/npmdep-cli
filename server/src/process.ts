@@ -81,6 +81,7 @@ export const handleNodes = (dir: string, repeatNodes: string[], topDeps:object) 
         }
     }
     exportJson(renderNodes, "public/data", "renderNodes.json");
+    exportJson(files, "public/data", "files.json");
     
 };
 
