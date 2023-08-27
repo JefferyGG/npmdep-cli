@@ -1,14 +1,4 @@
 <script setup lang="ts">
-import { testJson } from "./api/api";
-import { ref } from "vue";
-
-const axiosTest = ref("");
-async function getData() {
-  const res = await testJson();
-  axiosTest.value = res;
-}
-
-getData();
 
 </script>
 
