@@ -11,7 +11,11 @@ const app = new Koa();
 const anaDir = process.env.ANA_DIR;
 
 
-const { json:outpath, depth } = getOptions(JSON.parse(process.env.CLI_ARGV));
+const { json: outpath } = getOptions(JSON.parse(process.env.CLI_ARGV));
+let{depth} = getOptions(JSON.parse(process.env.CLI_ARGV));
+if (!depth) {
+  depth = "300";//depth默认值
+}
 
 //初步分析
 const { result: jsonData, links, topDeps} = analyze(anaDir, parseInt(depth));
