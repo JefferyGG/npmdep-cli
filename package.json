@@ -1,6 +1,6 @@
 {
   "name": "npmdeps-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,6 +17,18 @@
   "bin": {
     "npmdeps-cli": "bin/cli.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jefferyhhh/npmdep-cli.git"
+  },
+  "homepage":"https://github.com/jefferyhhh/npmdep-cli#readme",
+  "keywords": [
+    "cli",
+    "npm",
+    "npm package",
+    "dependencies",
+    "visualization"
+  ],
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
